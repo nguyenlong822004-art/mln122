@@ -2544,6 +2544,10 @@ input[type='range'] {
   display: block;
 }
 
+.hth-station-icon .diagram-photo--money {
+  object-position: center 40%;
+}
+
 .hth-station.current .hth-station-icon {
   border-color: var(--gold);
   box-shadow: 0 0 20px rgba(251, 191, 36, 0.35);

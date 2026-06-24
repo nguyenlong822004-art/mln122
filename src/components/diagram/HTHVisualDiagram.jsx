@@ -37,7 +37,11 @@ export default function HTHVisualDiagram({ activeStep, playing }) {
             style={{ left: `${station.x}%` }}
           >
             <div className="hth-station-icon">
-              <DiagramPhoto src={station.image} alt={station.alt} />
+              {station.id === 'money' ? (
+                <DiagramPhoto src={station.image} alt={station.alt} className="diagram-photo--money" />
+              ) : (
+                <DiagramPhoto src={station.image} alt={station.alt} />
+              )}
             </div>
             <span className="hth-station-label">{station.label}</span>
           </div>
@@ -48,7 +52,12 @@ export default function HTHVisualDiagram({ activeStep, playing }) {
         <div className="hth-traveler">
           {stations.map((station) => (
             <div key={station.id} className={`traveler-item traveler-${station.id}`}>
-              <DiagramPhoto src={station.image} alt="" size="traveler" />
+              <DiagramPhoto
+                src={station.image}
+                alt=""
+                size="traveler"
+                className={station.id === 'money' ? 'diagram-photo--money' : ''}
+              />
             </div>
           ))}
         </div>
