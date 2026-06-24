@@ -48,8 +48,7 @@ export default function Section111() {
       <section className="s111-block s111-flow-block" id="money-flow">
         <h3 className="s111-heading">💸 Dòng chảy của Tiền — Thử ngay!</h3>
         <p className="section-desc">
-          Kéo xấp tiền xuống <strong>Tiêu dùng</strong> (H—T—H) hoặc <strong>Tư bản</strong> (T—H—T&apos;) để cảm nhận
-          sự khác biệt giữa tiền lưu thông thông thường và tiền tư bản.
+         
         </p>
         <MoneyFlowDrag />
       </section>
@@ -79,8 +78,7 @@ export default function Section111() {
       <section className="s111-block s111-diagram-block" id="diagram">
         <h3 className="s111-heading">🎬 Sơ đồ trực quan — So sánh H—T—H và T—H—T&apos;</h3>
         <p className="section-desc">
-          Xem animation vải → tiền → lương thực (H—T—H) và chu trình tư bản (T—H—T&apos;). Nhấn{' '}
-          <strong>Phát animation</strong> hoặc dùng nút ← → từng bước.
+      
         </p>
         <MoneyMotionDiagram />
       </section>
