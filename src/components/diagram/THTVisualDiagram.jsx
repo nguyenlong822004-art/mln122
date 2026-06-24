@@ -1,25 +1,17 @@
-import {
-  MoneyIcon,
-  MoneyPlusIcon,
-  GoodsBundleIcon,
-  YarnProductIcon,
-  CapitalistIcon,
-} from './THTIcons'
+import { thtVisual } from '../../data/section111'
+import DiagramPhoto from './DiagramPhoto'
+import { CapitalistIcon } from './THTIcons'
 
-const STATIONS = [
-  { id: 'T', label: 'T — $27 vốn', Icon: MoneyIcon, x: 8 },
-  { id: 'H', label: 'H — MUA', Icon: GoodsBundleIcon, x: 32 },
-  { id: 'Hprime', label: "H' — 20kg sợi", Icon: YarnProductIcon, x: 58 },
-  { id: 'Tprime', label: "T' — $30", Icon: MoneyPlusIcon, x: 90 },
-]
+const { stations, capitalist } = thtVisual
 
 const CAPITALIST_ACTIONS = ['money', 'buy', 'produce', 'sell']
-const CAPTIONS = [
-  '💰 Cầm vốn T ($27)',
-  '🛍️ MUA SLĐ + bông',
-  '🏭 SX → 20kg sợi',
-  "💵 BÁN → T' ($30)",
-]
+
+const TRAVELER_CLASS = {
+  T: 'money',
+  H: 'goods',
+  Hprime: 'clothing',
+  Tprime: 'money-plus',
+}
 
 export default function THTVisualDiagram({ activeStep, playing }) {
   const capitalistAction = CAPITALIST_ACTIONS[Math.min(activeStep, 3)]
@@ -39,7 +31,7 @@ export default function THTVisualDiagram({ activeStep, playing }) {
       <svg className="tht-paths" viewBox="0 0 500 100" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <marker id="tht-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8 Z" fill="#a89f97" />
+            <path d="M0,0 L8,4 L0,8 Z" fill="#78716c" />
           </marker>
         </defs>
         <path className="tht-path-line" d="M 35 50 C 80 20, 100 20, 145 50" markerEnd="url(#tht-arrow)" />
@@ -51,14 +43,14 @@ export default function THTVisualDiagram({ activeStep, playing }) {
       </svg>
 
       <div className="tht-stations">
-        {STATIONS.map((station, i) => (
+        {stations.map((station, i) => (
           <div
             key={station.id}
             className={`tht-station ${activeStep >= i ? 'visited' : ''} ${activeStep === i ? 'current' : ''}`}
             style={{ left: `${station.x}%` }}
           >
             <div className="tht-station-icon">
-              <station.Icon />
+              <DiagramPhoto src={station.image} alt={station.alt} />
             </div>
             <span className="tht-station-label">{station.label}</span>
           </div>
@@ -67,21 +59,27 @@ export default function THTVisualDiagram({ activeStep, playing }) {
 
       <div className="tht-traveler-wrap" aria-hidden="true">
         <div className="tht-traveler">
-          <div className="traveler-item traveler-money"><MoneyIcon /></div>
-          <div className="traveler-item traveler-goods"><GoodsBundleIcon /></div>
-          <div className="traveler-item traveler-yarn"><YarnProductIcon /></div>
-          <div className="traveler-item traveler-money-plus"><MoneyPlusIcon /></div>
+          {stations.map((station) => (
+            <div
+              key={station.id}
+              className={`traveler-item traveler-${TRAVELER_CLASS[station.id]}`}
+            >
+              <DiagramPhoto src={station.image} alt="" size="traveler" />
+            </div>
+          ))}
         </div>
       </div>
 
       <div
         className={`tht-capitalist ${playing ? 'walking' : ''}`}
-        style={playing ? undefined : { left: `${STATIONS[activeStep].x}%` }}
+        style={playing ? undefined : { left: `${stations[activeStep].x}%` }}
         aria-label="Nhà tư bản"
       >
-        <CapitalistIcon action={capitalistAction} />
+        <div className="tht-capitalist-character">
+          <CapitalistIcon action={capitalistAction} />
+        </div>
         <span className="tht-capitalist-caption">
-          {playing ? 'Đầu tư...' : CAPTIONS[activeStep]}
+          {playing ? 'Đầu tư...' : capitalist.captions[activeStep]}
         </span>
       </div>
 

@@ -20,7 +20,7 @@ export function GoodsBundleIcon({ className = '' }) {
       <rect x="42" y="18" width="28" height="22" rx="3" fill="#fef3c7" stroke="#ca8a04" strokeWidth="1.5" />
       <circle cx="52" cy="28" r="4" fill="#fde68a" />
       <circle cx="62" cy="32" r="3" fill="#fde68a" />
-      <text x="56" y="52" textAnchor="middle" fill="#92400e" fontSize="8" fontWeight="600">Bông</text>
+      <text x="56" y="52" textAnchor="middle" fill="#92400e" fontSize="8" fontWeight="600">Vải</text>
       <circle cx="22" cy="26" r="10" fill="#fcd9b6" stroke="#c4a484" strokeWidth="1.5" />
       <path d="M14 24 Q22 18 30 24" fill="#5c4033" />
       <rect x="12" y="38" width="16" height="18" rx="2" fill="#4a7c59" stroke="#2d5a3d" strokeWidth="1" />
@@ -50,7 +50,7 @@ export function YarnProductIcon({ className = '' }) {
       <rect x="12" y="20" width="56" height="44" rx="4" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2" />
       <path d="M12 30h56M12 40h56M12 50h56" stroke="#93c5fd" strokeWidth="1" />
       <ellipse cx="40" cy="42" rx="16" ry="12" fill="#60a5fa" opacity="0.35" />
-      <text x="40" y="72" textAnchor="middle" fill="#60a5fa" fontSize="9" fontWeight="700">20kg sợi</text>
+      <text x="40" y="72" textAnchor="middle" fill="#60a5fa" fontSize="9" fontWeight="700">Quần áo</text>
     </svg>
   )
 }

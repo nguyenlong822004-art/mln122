@@ -73,6 +73,94 @@ export const comparison = {
   },
 }
 
+/** Ảnh minh họa cho sơ đồ H — T — H (Unsplash, free license) */
+export const hthVisual = {
+  stations: [
+    {
+      id: 'cloth',
+      label: 'H — Tấm vải',
+      image: '/images/hth-cloth.jpg',
+      alt: 'Cuộn vải dệt thủ công',
+      credit: 'Unsplash',
+      x: 12,
+    },
+    {
+      id: 'money',
+      label: 'T — Tiền',
+      image: '/images/hth-money.jpg',
+      alt: 'Tiền giấy và tiền xu',
+      credit: 'Unsplash',
+      x: 50,
+    },
+    {
+      id: 'food',
+      label: 'H — Lương thực',
+      image: '/images/hth-food.jpg',
+      alt: 'Rau củ quả tại chợ',
+      credit: 'Unsplash',
+      x: 88,
+    },
+  ],
+  worker: {
+    captions: ['Bán vải', 'Cầm tiền', 'Mua lương thực'],
+    holding: ['cloth', 'money', 'food'],
+  },
+}
+
+/** Ví dụ tư bản công nghiệp — sản xuất quần áo */
+export const clothingExample = {
+  capital: 27,
+  revenue: 30,
+  surplus: 3,
+  fabric: 20,
+  depreciation: 4,
+  wage: 3,
+  product: '100 bộ quần áo',
+  productShort: 'Quần áo',
+}
+
+/** Ảnh minh họa cho sơ đồ T — H — H' — T' (sản xuất quần áo) */
+export const thtVisual = {
+  stations: [
+    {
+      id: 'T',
+      label: `T — $${clothingExample.capital} vốn`,
+      image: '/images/hth-money.jpg',
+      alt: 'Vốn tiền tệ để mua nguyên liệu',
+      x: 8,
+    },
+    {
+      id: 'H',
+      label: 'H — Nguyên liệu',
+      image: '/images/tht-materials2.jpg',
+      alt: 'Vải, phụ liệu và sức lao động',
+      x: 32,
+    },
+    {
+      id: 'Hprime',
+      label: `H' — ${clothingExample.product}`,
+      image: '/images/tht-clothing.jpg',
+      alt: 'Thành phẩm quần áo sau sản xuất',
+      x: 58,
+    },
+    {
+      id: 'Tprime',
+      label: `T' — $${clothingExample.revenue}`,
+      image: '/images/tht-money-profit.jpg',
+      alt: 'Tiền thu về nhiều hơn vốn ban đầu',
+      x: 90,
+    },
+  ],
+  capitalist: {
+    captions: [
+      `Cầm vốn T ($${clothingExample.capital})`,
+      `MUA vải $${clothingExample.fabric} + SLĐ $${clothingExample.wage}`,
+      `SX → ${clothingExample.product}`,
+      `BÁN → T' ($${clothingExample.revenue})`,
+    ],
+  },
+}
+
 export const capitalFormulas = [
   {
     icon: '📐',
@@ -90,7 +178,7 @@ export const capitalFormulas = [
     icon: '🏭',
     name: 'Tư bản công nghiệp',
     formula: "T — H — H' — T'",
-    desc: 'Mua TSLĐ + nguyên liệu → Sản xuất H\' → Bán thu T\'',
+    desc: 'Mua nguyên liệu (vải) + SLĐ → May quần áo → Bán thu T\'',
   },
   {
     icon: '🏦',

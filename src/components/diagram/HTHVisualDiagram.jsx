@@ -1,24 +1,18 @@
-import { ClothIcon, MoneyIcon, FoodIcon, WorkerIcon } from './HTHIcons'
+import { hthVisual } from '../../data/section111'
+import DiagramPhoto from './DiagramPhoto'
+import { WorkerIcon } from './HTHIcons'
 
-const STATIONS = [
-  { id: 'cloth', label: 'H — Tấm vải', Icon: ClothIcon, x: 12 },
-  { id: 'money', label: 'T — Tiền', Icon: MoneyIcon, x: 50 },
-  { id: 'food', label: 'H — Lương thực', Icon: FoodIcon, x: 88 },
-]
-
-const WORKER_HOLDING = ['cloth', 'money', 'food']
-
-const WORKER_CAPTIONS = ['👋 Bán vải', '💰 Cầm tiền', '🛒 Mua lương thực']
+const { stations, worker } = hthVisual
 
 export default function HTHVisualDiagram({ activeStep, playing }) {
-  const workerHolding = WORKER_HOLDING[Math.min(activeStep, 2)]
+  const workerHolding = worker.holding[Math.min(activeStep, 2)]
 
   return (
     <div className={`hth-visual ${playing ? 'playing' : ''} step-${activeStep}`}>
       <svg className="hth-paths" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <marker id="hth-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8 Z" fill="#a89f97" />
+            <path d="M0,0 L8,4 L0,8 Z" fill="#78716c" />
           </marker>
         </defs>
         <path
@@ -36,14 +30,14 @@ export default function HTHVisualDiagram({ activeStep, playing }) {
       </svg>
 
       <div className="hth-stations">
-        {STATIONS.map((station, i) => (
+        {stations.map((station, i) => (
           <div
             key={station.id}
             className={`hth-station ${activeStep >= i ? 'visited' : ''} ${activeStep === i ? 'current' : ''}`}
             style={{ left: `${station.x}%` }}
           >
             <div className="hth-station-icon">
-              <station.Icon />
+              <DiagramPhoto src={station.image} alt={station.alt} />
             </div>
             <span className="hth-station-label">{station.label}</span>
           </div>
@@ -52,20 +46,24 @@ export default function HTHVisualDiagram({ activeStep, playing }) {
 
       <div className="hth-traveler-wrap" aria-hidden="true">
         <div className="hth-traveler">
-          <div className="traveler-item traveler-cloth"><ClothIcon /></div>
-          <div className="traveler-item traveler-money"><MoneyIcon /></div>
-          <div className="traveler-item traveler-food"><FoodIcon /></div>
+          {stations.map((station) => (
+            <div key={station.id} className={`traveler-item traveler-${station.id}`}>
+              <DiagramPhoto src={station.image} alt="" size="traveler" />
+            </div>
+          ))}
         </div>
       </div>
 
       <div
         className={`hth-worker ${playing ? 'walking' : ''}`}
-        style={playing ? undefined : { left: `${STATIONS[activeStep].x}%` }}
+        style={playing ? undefined : { left: `${stations[activeStep].x}%` }}
         aria-label="Thợ thủ công"
       >
-        <WorkerIcon holding={workerHolding} />
+        <div className="hth-worker-character">
+          <WorkerIcon holding={workerHolding} />
+        </div>
         <span className="hth-worker-caption">
-          {playing ? 'Đi chợ...' : WORKER_CAPTIONS[activeStep]}
+          {playing ? 'Đi chợ...' : worker.captions[activeStep]}
         </span>
       </div>
     </div>

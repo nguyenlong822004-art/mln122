@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
+import { clothingExample } from '../data/section111'
 import HTHVisualDiagram from './diagram/HTHVisualDiagram'
 import THTVisualDiagram from './diagram/THTVisualDiagram'
+
+const { capital, revenue, surplus, fabric, depreciation, wage, product } = clothingExample
 
 const STEPS_HTH = [
   { node: 0, action: 'sell', label: 'Bán hàng (H → T)', desc: 'Người nông dân/thợ thủ công bán sản phẩm (tấm vải) lấy tiền' },
@@ -9,10 +12,10 @@ const STEPS_HTH = [
 ]
 
 const STEPS_THT = [
-  { node: 0, action: 'hold', label: 'Tiền ban đầu (T = $27)', desc: 'Nhà tư bản nắm giữ tư bản tiền tệ — vốn ứng trước để sản xuất sợi.' },
-  { node: 1, action: 'buy', label: 'Mua hàng (T → H)', desc: 'MUA sức lao động ($3) + nguyên liệu bông ($20) + hao mòn máy ($4).' },
-  { node: 2, action: 'produce', label: "Sản xuất → H' (20kg sợi)", desc: 'Công nhân lao động 12 giờ — tạo giá trị mới, sinh ra giá trị thặng dư m = $3.' },
-  { node: 3, action: 'sell', label: "Bán hàng (H' → T' = $30)", desc: "BÁN sợi, thu về T' = T + ΔT = $27 + $3 = $30." },
+  { node: 0, action: 'hold', label: `Tiền ban đầu (T = $${capital})`, desc: `Nhà tư bản nắm giữ vốn $${capital} — chuẩn bị mua nguyên liệu may quần áo.` },
+  { node: 1, action: 'buy', label: 'Mua hàng (T → H)', desc: `MUA nguyên liệu vải ($${fabric}) + hao mòn máy ($${depreciation}) + sức lao động ($${wage}).` },
+  { node: 2, action: 'produce', label: `Sản xuất → H' (${product})`, desc: `Công nhân may ${product} trong 12 giờ — sinh giá trị thặng dư m = $${surplus}.` },
+  { node: 3, action: 'sell', label: `Bán hàng (H' → T' = $${revenue})`, desc: `BÁN quần áo, thu về T' = T + ΔT = $${capital} + $${surplus} = $${revenue}.` },
 ]
 
 function FlowDiagram({ type, activeStep, playing }) {
@@ -45,7 +48,7 @@ function FlowDiagram({ type, activeStep, playing }) {
         <span className="formula-arrow">→</span>
         <span className="formula-chip tp">T&apos;</span>
       </div>
-      <p className="tht-formula-note">T&apos; = T + ΔT · Ví dụ: $27 → $30 (m = $3)</p>
+      <p className="tht-formula-note">T&apos; = T + ΔT · Ví dụ may quần áo: ${capital} → ${revenue} (m = ${surplus})</p>
     </div>
   )
 }
